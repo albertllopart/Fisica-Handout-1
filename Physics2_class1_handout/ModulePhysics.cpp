@@ -3,10 +3,13 @@
 #include "ModulePhysics.h"
 #include "math.h"
 
+#include "Box2D\Box2D\Box2D.h"
+
 // TODO 1: Include Box 2 header and library
 #ifdef _DEBUG
-#include "Box2D\Box2D\Box2D.h"
 #pragma comment (lib, "Box2D/libx86/Debug/Box2D.lib")
+#else
+#pragma comment( lib, "Box2D/libx86/Release/Box2D.lib" )
 #endif
 
 ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -25,7 +28,7 @@ bool ModulePhysics::Start()
 {
 	LOG("Creating Physics 2D environment");
 
-	myWorld = new b2World(b2Vec2(0.0, -9.8));
+	myWorld = new b2World(b2Vec2(0.0f, -9.8f));
 
 	// TODO 2: Create a private variable for the world
 	// - You need to send it a default gravity
@@ -34,6 +37,7 @@ bool ModulePhysics::Start()
 
 
 	// TODO 4: Create a a big static circle as "ground"
+
 	return true;
 }
 

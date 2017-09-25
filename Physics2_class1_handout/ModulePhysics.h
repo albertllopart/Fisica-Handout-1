@@ -2,6 +2,9 @@
 #include "Module.h"
 #include "Globals.h"
 
+class b2World;
+class b2Body;
+
 class ModulePhysics : public Module
 {
 public:
