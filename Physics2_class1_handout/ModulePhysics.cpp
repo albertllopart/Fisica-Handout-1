@@ -37,6 +37,23 @@ bool ModulePhysics::Start()
 
 
 	// TODO 4: Create a a big static circle as "ground"
+	int x = SCREEN_WIDTH / 2;
+	int y = SCREEN_HEIGHT / 1.5f;
+	int diameter = SCREEN_WIDTH / 2;
+
+	b2BodyDef BigCircleDef;
+	BigCircleDef.type = b2_staticBody;
+	BigCircleDef.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+
+	b2Body* BigCircleToWorld = myWorld->CreateBody(&BigCircleDef);
+
+	b2CircleShape BigCircle;
+	BigCircle.m_radius = (PIXEL_TO_METERS(diameter) * 0.5f);
+
+	b2FixtureDef VingaVa;
+	VingaVa.shape = &BigCircle;
+
+	BigCircleToWorld->CreateFixture(&VingaVa);
 
 	return true;
 }
@@ -64,8 +81,8 @@ update_status ModulePhysics::PostUpdate()
 
 	// Bonus code: this will iterate all objects in the world and draw the circles
 	// You need to provide your own macro to translate meters to pixels
-	/*
-	for(b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+	
+	for(b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext())
 	{
 		for(b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 		{
@@ -82,7 +99,7 @@ update_status ModulePhysics::PostUpdate()
 				// You will have to add more cases to draw boxes, edges, and polygons ...
 			}
 		}
-	}*/
+	}
 
 	return UPDATE_CONTINUE;
 }
