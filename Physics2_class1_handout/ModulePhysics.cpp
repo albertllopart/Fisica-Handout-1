@@ -41,6 +41,7 @@ bool ModulePhysics::Start()
 update_status ModulePhysics::PreUpdate()
 {
 	// TODO 3: Update the simulation ("step" the world)
+	myWorld->Step(1.0f / 60.0f, 8, 3); //timestep, velocity, iteration
 
 	return UPDATE_CONTINUE;
 }
