@@ -12,16 +12,20 @@
 ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	debug = true;
+	myWorld = NULL;
 }
 
 // Destructor
 ModulePhysics::~ModulePhysics()
 {
+	delete myWorld;
 }
 
 bool ModulePhysics::Start()
 {
 	LOG("Creating Physics 2D environment");
+
+	myWorld = new b2World(b2Vec2(0.0, -9.8));
 
 	// TODO 2: Create a private variable for the world
 	// - You need to send it a default gravity

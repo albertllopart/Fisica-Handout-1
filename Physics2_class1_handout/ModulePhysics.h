@@ -15,5 +15,7 @@ public:
 
 private:
 
+	b2World* myWorld;
+
 	bool debug;
 };
